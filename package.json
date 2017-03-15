@@ -1,0 +1,29 @@
+{
+  "name": "infodesk",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "/infodesk/build",
+  "devDependencies": {
+    "react-scripts": "0.8.5"
+  },
+  "dependencies": {
+    "bloodhound": "^1.0.0",
+    "bloodhound-js": "^1.2.1",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1",
+    "promise-polyfill": "^6.0.2",
+    "react": "^15.4.2",
+    "react-autosuggest": "^8.0.0",
+    "react-bootstrap": "^0.30.7",
+    "react-dom": "^15.4.2",
+    "react-router": "^3.0.2",
+    "typeahead": "^0.2.2",
+    "whatwg-fetch": "^2.0.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
