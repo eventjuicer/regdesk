@@ -15,7 +15,7 @@ class NewRegistration extends React.Component {
 
     super(props);
 
-    this.defaults = {form: {fname: "", lname : "", cname2 : "", email : "", phone:"+49", }};
+    this.defaults = {form: {fname: "", lname : "", cname2 : "", email : "", phone:"+48", }};
 
     this.state = this.defaults;
 
@@ -143,7 +143,7 @@ class NewRegistration extends React.Component {
 
 
 
-    
+
     return (
 
        <Form horizontal onSubmit={this.handleSubmit}>
@@ -192,8 +192,8 @@ class NewRegistration extends React.Component {
         <Row>
         <Col smOffset={2} sm={10}>
 
-         <Button type="submit" bsStyle="primary" bsSize="large">Register</Button> 
-         
+         <Button type="submit" bsStyle="primary" bsSize="large">Register</Button>
+
          <Button onClick={this.handleReset} type="reset" bsStyle="default" bsSize="large">Reset</Button>
 
          </Col>
