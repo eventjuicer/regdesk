@@ -17,8 +17,7 @@ export function parseJSON(response)
 }
 
 
-
-export function getJSON(process.env.REACT_APP_API + url, callback, context)
+export function getJSON("https://api.eventjuicer.com/public/v1/hosts/targiehandlu.pl" + url, callback, context)
 {
 	fetch(url, {
       method: "GET",
@@ -30,7 +29,7 @@ export function getJSON(process.env.REACT_APP_API + url, callback, context)
     });
 }
 
-export function postJSON(process.env.REACT_APP_API + url, data, callback)
+export function postJSON("http://targiehandlu.pl" + url, data, callback)
 {
 	fetch(url, {
       method: "POST",

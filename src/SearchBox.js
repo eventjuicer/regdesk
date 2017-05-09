@@ -40,7 +40,7 @@ export default class SearchBox extends React.Component {
   }
 
   onSearchRequest = event => {
-   
+
     const q = event.target.value;
 
     this.setState({search : q});
@@ -56,7 +56,7 @@ export default class SearchBox extends React.Component {
     getJSON("/receptiondesk-retrieve?q=" + q, function(data)
     {
         this.setState({
-          suggestions: data
+          suggestions: data.data
         });
     }.bind(this) );
 
@@ -74,7 +74,7 @@ export default class SearchBox extends React.Component {
         });
     }.bind(this) );
 
-    
+
   }
 
   unrenderBadge = () => {
@@ -102,12 +102,12 @@ export default class SearchBox extends React.Component {
       badgeFromSearch.contentWindow.print();
   }
 
-  renderSuggestionsContainer = () => { 
+  renderSuggestionsContainer = () => {
 
     return (
 
         <ListGroup>
-          
+
           {
             this.state.suggestions.map((suggestion) => (
                 <ListGroupItem key={suggestion.id} onClick={(event) => this.onBadgeRequest(suggestion.id, event)}>
@@ -115,20 +115,21 @@ export default class SearchBox extends React.Component {
                   {suggestion.fname }{' '}
                   {suggestion.lname }{' '}
                   <strong>from:</strong>{' '}
-                  {suggestion.cname2}{' '}        
-                  
+                  {suggestion.cname2}{' '}
+
                   {suggestion.email}{' '}
-                  {suggestion.phone}    
+
+              
 
 
                 </ListGroupItem>
 
             ))
           }
-         
+
         </ListGroup>
 
-    )  
+    )
 
   }
 
@@ -155,7 +156,7 @@ export default class SearchBox extends React.Component {
   render() {
 
 
-   
+
 
     let suggestions = null;
     let badge = null;
@@ -181,7 +182,7 @@ export default class SearchBox extends React.Component {
 
 
     return (
-    
+
     <Row>
 
     <FormGroup bsSize="large" controlId="search" validationState={this.validateSearch()}>
@@ -196,9 +197,7 @@ export default class SearchBox extends React.Component {
     </Row>
 
 
-  
+
     );
   }
 }
-
-
