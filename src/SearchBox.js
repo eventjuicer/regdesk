@@ -2,8 +2,7 @@
 
 
 import React, { Component } from 'react';
-import logo from './logo.svg';
-//import './App.css';
+
 import {Row, Col, Table, ListGroup, ListGroupItem, FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 import {getJSON} from './helper';
 
@@ -171,7 +170,7 @@ export default class SearchBox extends React.Component {
     {
       badge = <div>
 
-      <iframe id="badgeFromSearch" src={this.state.iframeSrc} frameborder="0" style={iframeStyles} height="100%" width="100%"></iframe>
+      <iframe id="badgeFromSearch" src={this.state.iframeSrc} frameBorder="0" style={iframeStyles} height="100%" width="100%"></iframe>
 
       <Button bsSize="large" bsStyle="success"  onClick={this.handlePrint}>Print</Button>
 

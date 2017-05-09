@@ -48,7 +48,7 @@ class NewRegistration extends React.Component {
 
     let callback = this.props.onReady || function(){};
 
-    postJSON('/receptiondesk/', this.state.form, callback);
+    postJSON('/receptiondesk', this.state.form, callback);
 
   }
 
@@ -59,7 +59,7 @@ class NewRegistration extends React.Component {
 
     const length = this.state.form.fname.length;
 
-    if(length == 0)
+    if(length === 0)
     {
         return;
     }
@@ -73,7 +73,7 @@ class NewRegistration extends React.Component {
   {
     const length = this.state.form.lname.length;
 
-    if(length == 0)
+    if(length === 0)
     {
         return;
     }
@@ -86,7 +86,7 @@ class NewRegistration extends React.Component {
   {
     const length = this.state.form.cname2.length;
 
-    if(length == 0)
+    if(length === 0)
     {
         return;
     }
@@ -100,7 +100,7 @@ class NewRegistration extends React.Component {
   {
     const length = this.state.form.email.length;
 
-    if(length == 0)
+    if(length === 0)
     {
         return;
     }
@@ -118,7 +118,7 @@ class NewRegistration extends React.Component {
   {
     const length = this.state.form.phone.length;
 
-    if(length == 0 || length == 3)
+    if(length === 0 || length === 3)
     {
         return;
     }

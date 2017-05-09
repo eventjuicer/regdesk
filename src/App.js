@@ -36,10 +36,10 @@ export default class App extends Component {
 
   handleRegistered(target)
   {
-    
-    this.setState({iframeSrc : target});
 
-  
+    this.setState({iframeSrc : target.path});
+
+
   }
 
 
@@ -55,7 +55,7 @@ export default class App extends Component {
 
     return (
       <div>
-        
+
 
         <Navbar inverse fixedTop>
           <Grid>
@@ -72,12 +72,12 @@ export default class App extends Component {
             </Navbar.Header>
           </Grid>
         </Navbar>
-        
+
 
         <Jumbotron>
           <Grid>
 
-           
+
             <Row>
               <h2>Retrieve registration</h2>
               <SearchBox/>
@@ -87,14 +87,14 @@ export default class App extends Component {
 
 
               <h2>New registration</h2>
-              
+
               <Col xs={8} md={8}>
                <NewRegistration onReady={this.handleRegistered} />
                </Col>
 
                <Col xs={4} md={4}>
 
-               <iframe id="badge" src={this.state.iframeSrc} frameborder="0" style={styles} height="100%" width="100%"></iframe>
+               <iframe id="badge" src={this.state.iframeSrc} frameBorder="0" style={styles} height="100%" width="100%"></iframe>
 
                <Button bsSize="large" bsStyle="success"  onClick={this.handlePrint}>Print</Button>
 
@@ -102,7 +102,7 @@ export default class App extends Component {
 
             </Row>
 
-           
+
 
           </Grid>
         </Jumbotron>
@@ -110,4 +110,3 @@ export default class App extends Component {
     );
   }
 }
-
