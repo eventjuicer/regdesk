@@ -33,9 +33,6 @@ export function postJSON(url, data, callback)
 {
 	fetch(process.env.REACT_APP_REGAPI + url, {
       method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
       body: JSON.stringify(data)
     }).then(checkStatus).then(parseJSON).then(function(data)
     {
