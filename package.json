@@ -2,7 +2,7 @@
   "name": "infodesk",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/infodesk/build",
+  "homepage": "/register",
   "devDependencies": {
     "react-scripts": "0.8.5"
   },
