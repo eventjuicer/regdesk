@@ -17,9 +17,9 @@ export function parseJSON(response)
 }
 
 
-export function getJSON("https://api.eventjuicer.com/public/v1/hosts/targiehandlu.pl" + url, callback, context)
+export function getJSON(url, callback, context)
 {
-	fetch(url, {
+	fetch(process.env.REACT_APP_API + url, {
       method: "GET",
       headers: {
         'Content-Type': 'application/json'
@@ -29,9 +29,9 @@ export function getJSON("https://api.eventjuicer.com/public/v1/hosts/targiehandl
     });
 }
 
-export function postJSON("http://targiehandlu.pl" + url, data, callback)
+export function postJSON(url, data, callback)
 {
-	fetch(url, {
+	fetch(process.env.REACT_APP_REGAPI + url, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
