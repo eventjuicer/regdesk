@@ -18,7 +18,7 @@ export function parseJSON(response)
 
 
 
-export function getJSON(url, callback, context)
+export function getJSON(process.env.REACT_APP_API + url, callback, context)
 {
 	fetch(url, {
       method: "GET",
@@ -30,7 +30,7 @@ export function getJSON(url, callback, context)
     });
 }
 
-export function postJSON(url, data, callback)
+export function postJSON(process.env.REACT_APP_API + url, data, callback)
 {
 	fetch(url, {
       method: "POST",
