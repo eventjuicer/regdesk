@@ -1,44 +1,25 @@
 
-
-
 import React, { Component } from 'react';
 
 import {Row, Col, Table, ListGroup, ListGroupItem, FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 import {getJSON} from './helper';
 
-/*
-
-onClick={(evt) => this.handleRemove(id, etv)}
-
-*/
-const iframeStyles = {
-
-    overflow: "hidden",
-    height: "305px",
-    width: "100%",
-    border: "none"
-  }
-
-
-
 
 export default class SearchBox extends React.Component {
 
   constructor(props) {
+
     super(props);
 
     this.state = {
       search: '',
       suggestions: [],
-      participant_id : 0,
-      iframeSrc : ""
+      participant_id : 0
     };
-
-    this.onSearchRequest = this.onSearchRequest.bind(this);
 
   }
 
-  onSearchRequest = event => {
+  onSearchRequest = (event) => {
 
     const q = event.target.value;
 
@@ -46,7 +27,7 @@ export default class SearchBox extends React.Component {
 
     if(q.length < 3)
     {
-      this.unrenderBadge();
+     // this.unrenderBadge();
       this.unrenderSuggestionsContainer();
 
       return;
@@ -57,32 +38,24 @@ export default class SearchBox extends React.Component {
         this.setState({
           suggestions: data.data
         });
+
     }.bind(this) );
 
   };
 
-  onBadgeRequest = (participant_id, event) => {
+  onBadgeRequest = (suggestion, event) => {
+
+    this.setState({search : `${suggestion.lname}`});
 
     this.unrenderSuggestionsContainer();
 
-    getJSON("/receptiondesk-label?participant_id=" + participant_id, function(data)
-    {
-        this.setState({
-          participant_id : participant_id,
-          iframeSrc : data.data.path
-        });
-    }.bind(this) );
+    const {onBadgeReady} = this.props;
+
+    getJSON("/receptiondesk-label?participant_id=" + suggestion.id, onBadgeReady);
 
 
   }
 
-  unrenderBadge = () => {
-
-      this.setState({
-          participant_id : 0,
-          iframeSrc : ""
-      });
-  }
 
   unrenderSuggestionsContainer = () => {
 
@@ -92,14 +65,6 @@ export default class SearchBox extends React.Component {
 
   }
 
-  handlePrint = () => {
-
-      const badgeFromSearch = document.getElementById("badgeFromSearch");
-
-      badgeFromSearch.focus();
-
-      badgeFromSearch.contentWindow.print();
-  }
 
   renderSuggestionsContainer = () => {
 
@@ -109,18 +74,14 @@ export default class SearchBox extends React.Component {
 
           {
             this.state.suggestions.map((suggestion) => (
-                <ListGroupItem key={suggestion.id} onClick={(event) => this.onBadgeRequest(suggestion.id, event)}>
+                <ListGroupItem key={suggestion.id} onClick={(event) => this.onBadgeRequest(suggestion, event)}>
 
                   {suggestion.fname }{' '}
                   {suggestion.lname }{' '}
-                  <strong>from:</strong>{' '}
+                  <strong>company:</strong>{' '}
                   {suggestion.cname2}{' '}
-
+                  <strong>email:</strong>{' '}
                   {suggestion.email}{' '}
-
-
-
-
                 </ListGroupItem>
 
             ))
@@ -154,44 +115,18 @@ export default class SearchBox extends React.Component {
 
   render() {
 
-
-
-
-    let suggestions = null;
-    let badge = null;
-
-
-    if(this.state.suggestions.length)
-    {
-      suggestions = this.renderSuggestionsContainer();
-    }
-
-    if(this.state.iframeSrc)
-    {
-      badge = <div>
-
-      <iframe id="badgeFromSearch" src={this.state.iframeSrc} frameBorder="0" style={iframeStyles} height="100%" width="100%"></iframe>
-
-      <Button bsSize="large" bsStyle="success"  onClick={this.handlePrint}>Print</Button>
-
-      </div>;
-
-    }
-
-
-
     return (
 
     <Row>
 
     <FormGroup bsSize="large" controlId="search" validationState={this.validateSearch()}>
-      <FormControl onChange={this.onSearchRequest} type="text" value={this.state.search}  placeholder="Enter email, phone"  />
+      <FormControl onChange={this.onSearchRequest} type="text" value={this.state.search}  placeholder="Enter email, phone or last name"  />
       <FormControl.Feedback />
     </FormGroup>
 
-    {suggestions}
+    {this.state.suggestions.length ? this.renderSuggestionsContainer() : null}
 
-    {badge}
+
 
     </Row>
 

@@ -8,6 +8,19 @@ import SearchBox from './SearchBox';
 import NewRegistration from './NewRegistration';
 
 
+
+
+const iframeStyles = {
+      marginTop : 60,
+      overflow: "hidden",
+      height: "305px",
+      width: "100%",
+      border: "1px solid #cccccc"
+};
+
+
+
+
 export default class App extends Component {
 
   constructor(props) {
@@ -25,31 +38,20 @@ export default class App extends Component {
   handlePrint()
   {
       const badge = document.getElementById("badge");
-
       badge.focus();
-
       badge.contentWindow.print();
   }
 
 
   handleRegistered(target)
   {
-
     this.setState({iframeSrc : target.data.path});
-
-
   }
 
 
   render() {
 
-    const styles = {
-
-      overflow: "hidden",
-      height: "305px",
-      width: "100%",
-      border: "none"
-    }
+    
 
     return (
       <div>
@@ -71,38 +73,39 @@ export default class App extends Component {
           </Grid>
         </Navbar>
 
-
         <Jumbotron>
-          <Grid>
+
+        <Grid>
+         <Row>
+        <Col lg={8} md={8} sm={8} xs={8}>
+
+            
+            <h2>Already registered</h2>
+            
+            <SearchBox onBadgeReady={this.handleRegistered} />
 
 
-            <Row>
-              <h2>Already registered <small>use: name, phone, email to retrieve registration data</small></h2>
-              <SearchBox/>
-            </Row>
-
-            <Row>
+            <h2>New registration</h2>
+            
+            <NewRegistration onBadgeReady={this.handleRegistered} />
 
 
-              <h2>New registration</h2>
+        </Col>
 
-              <Col xs={8} md={8}>
-               <NewRegistration onReady={this.handleRegistered} />
-               </Col>
+        <Col lg={4} md={4} sm={4} xs={4}>
 
-               <Col xs={4} md={4}>
-
-               <iframe id="badge" src={this.state.iframeSrc} frameBorder="0" style={styles} height="100%" width="100%"></iframe>
+              
+               <iframe id="badge" src={this.state.iframeSrc} frameBorder="0" style={iframeStyles} height="100%" width="100%"></iframe>
 
                <Button bsSize="large" bsStyle="success"  onClick={this.handlePrint}>Print</Button>
 
-               </Col>
 
-            </Row>
+        </Col>
 
+         </Row>
 
+        </Grid>
 
-          </Grid>
         </Jumbotron>
       </div>
     );

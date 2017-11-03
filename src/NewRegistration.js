@@ -18,18 +18,11 @@ class NewRegistration extends React.Component {
     this.defaults = {form: {fname: "", lname : "", cname2 : "", email : "", phone:"+48", }};
 
     this.state = this.defaults;
-
-    // This binding is necessary to make `this` work in the callback
-
-    this.handleClick = this.handleClick.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-
+   
     this.errors = 0;
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
 
     const target = e.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -44,14 +37,16 @@ class NewRegistration extends React.Component {
 
     e.preventDefault();
 
-   // this.state.form.map((elem) => {});
+    const {onBadgeReady} = this.props;
 
-    let callback = this.props.onReady || function(){};
-
-    postJSON('/receptiondesk', this.state.form, callback);
+    postJSON('/receptiondesk', this.state.form, onBadgeReady);
 
   }
 
+  handleReset()
+  {
+    this.setState(this.defaults);
+  }
 
 
   validateFname()
@@ -128,20 +123,11 @@ class NewRegistration extends React.Component {
 
   }
 
-  handleReset()
-  {
-    this.setState(this.defaults);
-  }
 
-  handleClick() {
-    this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
-    }));
-  }
 
   render() {
 
-
+    const {fname, lname, cname2, email, phone} = this.state.form;
 
 
     return (
@@ -151,7 +137,7 @@ class NewRegistration extends React.Component {
         <FormGroup bsSize="large" controlId="fname" validationState={this.validateFname()}>
           <ControlLabel bsClass="col-sm-2 control-label">First name</ControlLabel>
           <div className="col-sm-10">
-          <FormControl type="text"  value={this.state.form.fname}  placeholder="Enter text" onChange={this.handleChange} />
+          <FormControl type="text"  value={fname}  placeholder="Enter text" onChange={this.handleChange} />
           <FormControl.Feedback />
           </div>
         </FormGroup>
@@ -159,7 +145,7 @@ class NewRegistration extends React.Component {
         <FormGroup bsSize="large" controlId="lname" validationState={this.validateLname()}>
           <ControlLabel bsClass="col-sm-2 control-label">Last name</ControlLabel>
           <div className="col-sm-10">
-          <FormControl type="text" value={this.state.form.lname} placeholder="Enter text" onChange={this.handleChange} />
+          <FormControl type="text" value={lname} placeholder="Enter text" onChange={this.handleChange} />
           <FormControl.Feedback />
           </div>
         </FormGroup>
@@ -167,7 +153,7 @@ class NewRegistration extends React.Component {
         <FormGroup bsSize="large" controlId="cname2" validationState={this.validateCname2()}>
           <ControlLabel bsClass="col-sm-2 control-label">Company Name</ControlLabel>
           <div className="col-sm-10">
-          <FormControl type="text" value={this.state.form.cname2}   placeholder="Enter text" onChange={this.handleChange} />
+          <FormControl type="text" value={cname2}   placeholder="Enter text" onChange={this.handleChange} />
           <FormControl.Feedback />
           </div>
         </FormGroup>
@@ -175,7 +161,7 @@ class NewRegistration extends React.Component {
         <FormGroup bsSize="large" controlId="email" validationState={this.validateEmail()}>
           <ControlLabel bsClass="col-sm-2 control-label">Email</ControlLabel>
           <div className="col-sm-10">
-          <FormControl type="text" value={this.state.form.email} placeholder="Enter text" onChange={this.handleChange} />
+          <FormControl type="text" value={email} placeholder="Enter text" onChange={this.handleChange} />
           <FormControl.Feedback />
           </div>
         </FormGroup>
@@ -183,7 +169,7 @@ class NewRegistration extends React.Component {
         <FormGroup bsSize="large" controlId="phone" validationState={this.validatePhone()}>
           <Col componentClass={ControlLabel} sm={2}>Phone</Col>
           <Col sm={10}>
-          <FormControl type="text" value={this.state.form.phone}   placeholder="Enter text" onChange={this.handleChange} />
+          <FormControl type="text" value={phone}   placeholder="Enter text" onChange={this.handleChange} />
           <FormControl.Feedback />
           <HelpBlock>international prefix required</HelpBlock>
           </Col>
