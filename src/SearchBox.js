@@ -69,7 +69,7 @@ export default class SearchBox extends React.Component {
     {
         this.setState({
           participant_id : participant_id,
-          iframeSrc : data.data
+          iframeSrc : data.data.path
         });
     }.bind(this) );
 
@@ -109,7 +109,7 @@ export default class SearchBox extends React.Component {
 
           {
             this.state.suggestions.map((suggestion) => (
-                <ListGroupItem key={suggestion.participant_id} onClick={(event) => this.onBadgeRequest(suggestion.participant_id, event)}>
+                <ListGroupItem key={suggestion.id} onClick={(event) => this.onBadgeRequest(suggestion.id, event)}>
 
                   {suggestion.fname }{' '}
                   {suggestion.lname }{' '}

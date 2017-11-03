@@ -22,8 +22,6 @@ export default class App extends Component {
   }
 
 
-
-
   handlePrint()
   {
       const badge = document.getElementById("badge");
@@ -37,7 +35,7 @@ export default class App extends Component {
   handleRegistered(target)
   {
 
-    this.setState({iframeSrc : target.path});
+    this.setState({iframeSrc : target.data.path});
 
 
   }
@@ -79,7 +77,7 @@ export default class App extends Component {
 
 
             <Row>
-              <h2>Retrieve registration</h2>
+              <h2>Already registered <small>use: name, phone, email to retrieve registration data</small></h2>
               <SearchBox/>
             </Row>
 
