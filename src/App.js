@@ -23,7 +23,7 @@ const styles = {
   iframeStyles : {
        marginTop : 10,
       overflow: "hidden",
-      height: "500px",
+      height: "450px",
       width: "100%",
       border: "1px solid #cccccc"
   }
