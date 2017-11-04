@@ -71,12 +71,12 @@ export default class App extends React.Component {
         <Col lg={8} md={8} sm={8} xs={8}>
 
             
-            <h2>Already registered? Find badge!</h2>
+            <h2>Already registered? Find a badge!</h2>
             
             <SearchBox onBadgeReady={this.handleIframe}/>
 
 
-            <h2>New registration</h2>
+            <h2>New registration? Fill in visitor's data...</h2>
             
             <NewRegistration onBadgeReady={this.handleIframe} />
 
