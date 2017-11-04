@@ -2,8 +2,8 @@
 
 
 
-import React, { Component } from 'react';
-import { Grid, Row, Col, Navbar, Nav, NavItem, Jumbotron, Button } from 'react-bootstrap';
+import React  from 'react';
+import { Grid, Row, Col, Navbar, Nav, NavItem, Jumbotron } from 'react-bootstrap';
 import SearchBox from './SearchBox';
 import NewRegistration from './NewRegistration';
 
@@ -13,7 +13,7 @@ import NewRegistration from './NewRegistration';
 const iframeStyles = {
       marginTop : 60,
       overflow: "hidden",
-      height: "305px",
+      height: "500px",
       width: "100%",
       border: "1px solid #cccccc"
 };
@@ -21,7 +21,7 @@ const iframeStyles = {
 
 
 
-export default class App extends Component {
+export default class App extends React.Component {
 
   constructor(props) {
 
@@ -29,21 +29,13 @@ export default class App extends Component {
 
     this.state = {iframeSrc : ""};
 
-    this.handleRegistered = this.handleRegistered.bind(this);
-    this.handlePrint = this.handlePrint.bind(this);
+    
 
   }
 
 
-  handlePrint()
-  {
-      const badge = document.getElementById("badge");
-      badge.focus();
-      badge.contentWindow.print();
-  }
 
-
-  handleRegistered(target)
+  handleIframe = (target) =>
   {
     this.setState({iframeSrc : target.data.path});
   }
@@ -51,7 +43,6 @@ export default class App extends Component {
 
   render() {
 
-    
 
     return (
       <div>
@@ -80,14 +71,14 @@ export default class App extends Component {
         <Col lg={8} md={8} sm={8} xs={8}>
 
             
-            <h2>Already registered</h2>
+            <h2>Already registered? Find badge!</h2>
             
-            <SearchBox onBadgeReady={this.handleRegistered} />
+            <SearchBox onBadgeReady={this.handleIframe}/>
 
 
             <h2>New registration</h2>
             
-            <NewRegistration onBadgeReady={this.handleRegistered} />
+            <NewRegistration onBadgeReady={this.handleIframe} />
 
 
         </Col>
@@ -95,9 +86,8 @@ export default class App extends Component {
         <Col lg={4} md={4} sm={4} xs={4}>
 
               
-               <iframe id="badge" src={this.state.iframeSrc} frameBorder="0" style={iframeStyles} height="100%" width="100%"></iframe>
+               <iframe id="badge" title="PDF" src={this.state.iframeSrc} style={iframeStyles}></iframe>
 
-               <Button bsSize="large" bsStyle="success"  onClick={this.handlePrint}>Print</Button>
 
 
         </Col>

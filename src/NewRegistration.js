@@ -1,7 +1,6 @@
 
-import React, { Component } from 'react';
-import logo from './logo.svg';
-//import './App.css';
+import React  from 'react';
+
 import { Button, Form, Row, Col, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 
 import {postJSON, validateEmail} from './helper';

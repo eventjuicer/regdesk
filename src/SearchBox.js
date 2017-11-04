@@ -1,7 +1,7 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 
-import {Row, Col, Table, ListGroup, ListGroupItem, FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
+import {Row, Col, ListGroup, ListGroupItem, FormGroup, FormControl } from 'react-bootstrap';
 import {getJSON} from './helper';
 
 
@@ -13,6 +13,7 @@ export default class SearchBox extends React.Component {
 
     this.state = {
       search: '',
+    
       suggestions: [],
       participant_id : 0
     };
@@ -45,7 +46,6 @@ export default class SearchBox extends React.Component {
 
   onBadgeRequest = (suggestion, event) => {
 
-    this.setState({search : `${suggestion.lname}`});
 
     this.unrenderSuggestionsContainer();
 
@@ -98,7 +98,7 @@ export default class SearchBox extends React.Component {
 
     const length = this.state.search.length;
 
-    if(length == 0)
+    if(length === 0)
     {
         return;
     }
@@ -115,9 +115,13 @@ export default class SearchBox extends React.Component {
 
   render() {
 
+    const {chosen} = this.state;
+
     return (
 
     <Row>
+
+     <Col lg={12} md={12} sm={12} xs={12}>
 
     <FormGroup bsSize="large" controlId="search" validationState={this.validateSearch()}>
       <FormControl onChange={this.onSearchRequest} type="text" value={this.state.search}  placeholder="Enter email, phone or last name"  />
@@ -128,6 +132,7 @@ export default class SearchBox extends React.Component {
 
 
 
+    </Col>
     </Row>
 
 
