@@ -3,19 +3,32 @@
 
 
 import React  from 'react';
-import { Grid, Row, Col, Navbar, Nav, NavItem, Jumbotron } from 'react-bootstrap';
+import { Grid, Row, Col, Navbar, Nav, NavItem, Jumbotron, Button } from 'react-bootstrap';
 import SearchBox from './SearchBox';
 import NewRegistration from './NewRegistration';
 
 
 
 
-const iframeStyles = {
+const styles = {
+
+
+  iframeContainer : {
+
       marginTop : 60,
+      textAlign : "right"
+  },
+
+
+  iframeStyles : {
+       marginTop : 10,
       overflow: "hidden",
       height: "500px",
       width: "100%",
       border: "1px solid #cccccc"
+  }
+
+
 };
 
 
@@ -33,6 +46,12 @@ export default class App extends React.Component {
 
   }
 
+  handlePrint = () => {
+
+     this.ifr.focus();
+     this.ifr.contentWindow.print();
+  }
+
 
 
   handleIframe = (target) =>
@@ -43,6 +62,8 @@ export default class App extends React.Component {
 
   render() {
 
+    const {iframeSrc} = this.state;
+ 
 
     return (
       <div>
@@ -86,8 +107,14 @@ export default class App extends React.Component {
         <Col lg={4} md={4} sm={4} xs={4}>
 
               
-               <iframe id="badge" title="PDF" src={this.state.iframeSrc} style={iframeStyles}></iframe>
+        <div style={styles.iframeContainer}>
 
+
+               <iframe id="badge"  ref={(f) => this.ifr = f}  title="PDF" src={iframeSrc} style={styles.iframeStyles}></iframe>
+          
+                        <Button bsSize="large" bsStyle="primary" onClick={this.handlePrint}>Print</Button>
+
+        </div>
 
 
         </Col>

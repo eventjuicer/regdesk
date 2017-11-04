@@ -13,7 +13,6 @@ export default class SearchBox extends React.Component {
 
     this.state = {
       search: '',
-    
       suggestions: [],
       participant_id : 0
     };
@@ -115,7 +114,7 @@ export default class SearchBox extends React.Component {
 
   render() {
 
-    const {chosen} = this.state;
+    const {search} = this.state;
 
     return (
 
@@ -124,7 +123,7 @@ export default class SearchBox extends React.Component {
      <Col lg={12} md={12} sm={12} xs={12}>
 
     <FormGroup bsSize="large" controlId="search" validationState={this.validateSearch()}>
-      <FormControl onChange={this.onSearchRequest} type="text" value={this.state.search}  placeholder="Enter email, phone or last name"  />
+      <FormControl onChange={this.onSearchRequest} type="text" value={search}  placeholder="Enter email, phone or last name"  />
       <FormControl.Feedback />
     </FormGroup>
 
