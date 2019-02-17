@@ -14,7 +14,7 @@ class NewRegistration extends React.Component {
 
     super(props);
 
-    this.defaults = {form: {fname: "", lname : "", cname2 : "", email : "", phone:"+48", }};
+    this.defaults = {form: {fname: "", lname : "", cname2 : "", email : "", phone:"+49", }};
 
     this.state = this.defaults;
    
