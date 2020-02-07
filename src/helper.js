@@ -17,31 +17,31 @@ export function parseJSON(response)
 }
 
 
-export function getJSON(url, callback, context)
-{
-	fetch(process.env.REACT_APP_API + url, {
-      method: "GET",
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(checkStatus).then(parseJSON).then(callback).catch(function(error){
+// export function getJSON(url, callback, context)
+// {
+// 	fetch(process.env.REACT_APP_API + url, {
+//       method: "GET",
+//       headers: {
+//         'Content-Type': 'application/json'
+//       }
+//     }).then(checkStatus).then(parseJSON).then(callback).catch(function(error){
 
-    });
-}
+//     });
+// }
 
-export function postJSON(url, data, callback)
-{
-	fetch(process.env.REACT_APP_REGAPI + url, {
-      method: "POST",
-      body: JSON.stringify(data)
-    }).then(checkStatus).then(parseJSON).then(function(data)
-    {
-        callback(data);
+// export function postJSON(url, data, callback)
+// {
+// 	fetch(process.env.REACT_APP_REGAPI + url, {
+//       method: "POST",
+//       body: JSON.stringify(data)
+//     }).then(checkStatus).then(parseJSON).then(function(data)
+//     {
+//         callback(data);
 
-    }).catch(function(error){
+//     }).catch(function(error){
 
-    });
-}
+//     });
+// }
 
 
 export function validateEmail(email) {
