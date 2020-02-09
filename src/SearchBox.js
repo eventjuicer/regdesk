@@ -73,15 +73,9 @@ export default class SearchBox extends React.Component {
 
           {
             this.state.suggestions.map((suggestion) => (
-                <ListGroupItem key={suggestion.id} onClick={(event) => this.onBadgeRequest(suggestion, event)}>
-
-                  {suggestion.fname }{' '}
-                  {suggestion.lname }{' '}
-                  <strong>company:</strong>{' '}
-                  {suggestion.cname2}{' '}
-                  <strong>email:</strong>{' '}
-                  {suggestion.email}{' '}
-                </ListGroupItem>
+                <ListGroupItem key={suggestion.id} onClick={(event) => this.onBadgeRequest(suggestion, event)}>{
+                  `${suggestion.vip ? '###VIP### ':''} ${suggestion.fname} COMPANY: ${suggestion.cname2} PHONE: ${suggestion.phone}`
+                }</ListGroupItem>
 
             ))
           }
